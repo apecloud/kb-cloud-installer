@@ -1,0 +1,41 @@
+apiVersion: apps.sealos.io/v1beta1
+kind: Cluster
+metadata:
+  name: default
+spec:
+  hosts:
+  - ips:
+    - 192.168.0.2:22
+    - 192.168.0.3:22
+    - 192.168.0.4:22
+    roles:
+    - master
+    - amd64
+  - ips:
+    - 192.168.0.5:22
+    - 192.168.0.6:22
+    - 192.168.0.7:22
+    roles:
+    - node
+    - amd64
+  image:
+  - apecloud/kubernetes-airgap:v1.27.7
+  - labring/helm:v3.15.4
+  - apecloud/calico-airgap:v3.28.0
+  - labring/coredns:v0.0.1
+  - labring/cert-manager:v1.12.1
+  - labring/openebs:v3.4.0
+  ssh:
+    passwd: xxx
+    pk: /root/.ssh/id_rsa
+    port: 22
+    user: root
+  env:
+    - registryDomain=sealos.hub
+    - registryPort=5000
+    - registryUsername=admin
+    - registryPassword=passw0rd
+    - criData=/var/lib/containerd
+    - registryData=/var/lib/registry
+    - registryConfig=/etc/registry
+status: {}
