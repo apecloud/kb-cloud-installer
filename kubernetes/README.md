@@ -1,5 +1,5 @@
 # 部署 Kubernetes 集群
-本文档介绍如何使用 Sealos 配置并部署 Kubernetes 集群。
+本文档介绍如何使用 Sealos 部署 Kubernetes 集群。
 
 ## 准备离线包
 
@@ -70,6 +70,12 @@ find ./ -type f -name '*.tar' -exec sealos load -i {} \;
    Sealos 同样提供了状态数据存储路径的设置。在同样的配置文件 `/etc/containers/storage.conf` 中，找到并修改 runroot 字段为新的路径。
 
    通过以上步骤，你可以将 Sealos 集群的镜像数据和状态数据保存到新的地址。每次运行 Sealos 命令时，它都将使用你在 graphroot 和 runroot 中设置的新路径来分别存储镜像数据和状态数据。
+
+## 部署 Kubernetes
+
+```shell
+sealos apply -f cluster.yaml --debug
+```
 
 ## 如何切换 registry
 对于高可用的 registry，如果某个 registry node 不可用，可以通过修改 node 的 `/etc/hosts` 文件，将 registry 域名指向其他可用的 registry node.
