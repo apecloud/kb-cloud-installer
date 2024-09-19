@@ -10,6 +10,7 @@ spec:
     - 192.168.0.4:22
     roles:
     - master
+    - registry
     - amd64
   - ips:
     - 192.168.0.5:22
@@ -19,12 +20,13 @@ spec:
     - node
     - amd64
   image:
-  - apecloud/kubernetes-airgap:v1.27.7
-  - labring/helm:v3.15.4
-  - apecloud/calico-airgap:v3.28.0
-  - labring/coredns:v0.0.1
-  - labring/cert-manager:v1.12.1
-  - labring/openebs:v3.4.0
+    - apecloud/kubernetes-airgap:v1.27.7
+    - labring/helm:v3.15.4
+    - apecloud/calico-airgap:v3.28.0
+    - labring/coredns:v0.0.1
+    - labring/cert-manager:v1.12.13
+    - labring/openebs:v3.10.0
+    - labring/ingress-nginx:v1.11.2
   ssh:
     passwd: xxx
     pk: /root/.ssh/id_rsa
@@ -39,3 +41,23 @@ spec:
     - registryData=/var/lib/registry
     - registryConfig=/etc/registry
 status: {}
+---
+apiVersion: apps.sealos.io/v1beta1
+kind: Config
+metadata:
+  name: ingress-nginx
+spec:
+  path: charts/ingress-nginx/values.yaml
+  strategy: merge
+  data: |
+    controller:
+      hostNetwork: true
+      kind: DaemonSet
+      service:
+        type: ClusterIP
+      image:
+        registry: sealos.hub:5000
+        image: apecloud/controller
+        digest: ""
+      admissionWebhooks:
+        enabled: false
