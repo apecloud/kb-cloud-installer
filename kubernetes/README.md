@@ -9,13 +9,13 @@
 * 默认 registry 部署在第一个 master 节点上，如果要部署高可用的 registry，可以指定多个 node 的角色为 registry，如：
   ```yaml
    - ips:
-   - 192.168.0.2:22
-   - 192.168.0.3:22
-   - 192.168.0.4:22
-   roles:
-   - master
-   - registry
-   - amd64
+     - 192.168.0.2:22
+     - 192.168.0.3:22
+     - 192.168.0.4:22
+     roles:
+     - master
+     - registry
+     - amd64
   ```
 
 ## 修改 `/var/lib/sealos` 默认目录存储位置
@@ -57,3 +57,12 @@
    Sealos 同样提供了状态数据存储路径的设置。在同样的配置文件 `/etc/containers/storage.conf` 中，找到并修改 runroot 字段为新的路径。
 
    通过以上步骤，你可以将 Sealos 集群的镜像数据和状态数据保存到新的地址。每次运行 Sealos 命令时，它都将使用你在 graphroot 和 runroot 中设置的新路径来分别存储镜像数据和状态数据。
+
+> 注意：对于角色为 registry 的 node，如果修改了默认的存储路径，需要在所有 registry 节点创建对应的目录，否则可能会报错，如下：
+> ```
+> Error: failed to make link: run command `rm -rf /data/var/lib/registry && ln -s /data/sealos/data/default/rootfs/registry /data/var/lib/registry` on 10.128.0.48:22, output: ln: failed to create symbolic link '/data/var/lib/registry': No such file or directory
+> , error: Process exited with status 1,
+> ```
+
+## 如何切换 registry
+对于高可用的 registry，如果某个 registry node 不可用，可以通过修改 node 的 `/etc/hosts` 文件，将 registry 域名指向其他可用的 registry node.
