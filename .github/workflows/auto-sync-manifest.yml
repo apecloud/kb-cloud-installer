@@ -12,6 +12,8 @@ on:
 env:
   GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
+run-name: Auto Sync Manifest ${{ inputs.RELEASE_VERSION }}
+
 jobs:
   sync-manifest:
     runs-on: ubuntu-latest
@@ -54,9 +56,9 @@ jobs:
           echo file_changes=$FILE_CHANGES >> $GITHUB_OUTPUT
           echo changes_dir=$MANIFEST_DIR >> $GITHUB_OUTPUT
 
-#      - name: Push manifest changes
-#        uses: ad-m/github-push-action@master
-#        if: ${{ steps.check-manifest.outputs.file_changes }}
-#        with:
-#          directory: ./${{ steps.check-manifest.outputs.changes_dir }}
-#          github_token: ${{ env.GITHUB_TOKEN }}
+      - name: Push manifest changes
+        uses: ad-m/github-push-action@master
+        if: ${{ steps.check-manifest.outputs.file_changes }}
+        with:
+          directory: ./${{ steps.check-manifest.outputs.changes_dir }}
+          github_token: ${{ env.GITHUB_TOKEN }}
