@@ -1,6 +1,6 @@
 #!/bin/bash
-MANIFESTS_FILE=${1:-"deploy-manifests.yaml"}
-VALUES_FILE=${2:-"deploy-values.yaml"}
+MANIFESTS_FILE=${1:-"manifests.yaml"}
+VALUES_FILE=${2:-"values.yaml"}
 DEST_REGISTRY=${3:-""}
 DEST_USERNAME=${4:-""}
 DEST_PASSWORD=${5:-""}

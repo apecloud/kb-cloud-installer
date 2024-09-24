@@ -1,6 +1,6 @@
 #!/bin/bash
-MANIFESTS_FILE=${1:-"deploy-manifests.yaml"}
-VALUES_FILE=${2:-"deploy-values.yaml"}
+MANIFESTS_FILE=${1:-"manifests.yaml"}
+VALUES_FILE=${2:-"values.yaml"}
 PARALLEL_DOWNLOAD=${3:-"true"}
 MAX_PARALLEL_NUM=4
 PARALLEL_FILE="download_manifests_offline_images_parallel.txt"
@@ -21,8 +21,8 @@ download_images_package() {
         fi
     fi
 
+    image_package_url="${IMAGE_BASE_URL}/${image_package_name}-images-${image_package_version}.tar.gz"
     for i in {1..3}; do
-        image_package_url="${IMAGE_BASE_URL}/${image_package_name}-images-${image_package_version}.tar.gz"
         wget -nc -P ${PACKAGE_DIR} ${image_package_url}
         ret_wget=$?
         if [[ $ret_msg -eq 0 ]]; then
