@@ -44,7 +44,7 @@ jobs:
           cp -r ${{ github.workspace }}/apecloud/manifests/deploy-manifests.yaml  ${MANIFEST_DIR}/manifests.yaml
           cp -r ${{ github.workspace }}/apecloud/manifests/deploy-values.yaml  ${MANIFEST_DIR}/values.yaml
           git add ${MANIFEST_DIR}/*
-          FILE_CHANGES=`git diff --name-only ${block_index_sha}`
+          FILE_CHANGES=`git diff --name-only ${COMMIT_SHA}`
           if [[ ! -z "$FILE_CHANGES" ]]; then
               echo "FILE_CHANGES:"$FILE_CHANGES
               git config --local user.name "$GITHUB_ACTOR"
