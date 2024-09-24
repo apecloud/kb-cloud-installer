@@ -102,10 +102,17 @@ gemini-monitor:
     isAddon: false
     images:
       - apecloud/oteld:0.6.3
+minio:
+  - version: 0.9.0
+    isEnterprise: false
+    isAddon: false
+    images:
+      - apecloud/kubeblocks-tools:0.8.2
+      - apecloud/minio:RELEASE.2024-06-29T01-20-47Z
 ape-local-csi-driver:
   - version: 0.2.2
     isEnterprise: false
-    isAddon: false
+    isAddon: true
     images:
       - apecloud/ape-local:0.2.2
       - apecloud/livenessprobe:v2.12.0
@@ -117,7 +124,7 @@ ape-local-csi-driver:
 kubebench:
   - version: 0.0.1
     isEnterprise: false
-    isAddon: false
+    isAddon: true
     images:
       - apecloud/kubebench:0.0.10
       - apecloud/customsuites:latest
@@ -128,13 +135,6 @@ kubebench:
       - apecloud/go-ycsb:latest
       - apecloud/fio:latest
       - apecloud/redis:7.0.5
-minio:
-  - version: 0.9.0
-    isEnterprise: false
-    isAddon: false
-    images:
-      - apecloud/kubeblocks-tools:0.8.2
-      - apecloud/minio:RELEASE.2024-06-29T01-20-47Z
 # addons
 apecloud-mysql:
   - version: 0.9.0-beta.10
@@ -324,14 +324,14 @@ kingbase:
 ingress-nginx:
   - version: 4.8.4
     isEnterprise: false
-    isAddon: false
+    isAddon: true
     images:
       - apecloud/controller:v1.9.4
       - apecloud/kube-webhook-certgen:v20231011-8b53cabe0
 metallb:
   - version: 0.14.4
     isEnterprise: false
-    isAddon: false
+    isAddon: true
     images:
       - apecloud/frr:9.0.2
       - apecloud/speaker:v0.14.4
@@ -340,13 +340,13 @@ metallb:
 metrics-server:
   - version: 3.12.0
     isEnterprise: false
-    isAddon: false
+    isAddon: true
     images:
       - apecloud/metrics-server:v0.7.0
 cert-manager:
   - version: v1.14.2
     isEnterprise: false
-    isAddon: false
+    isAddon: true
     images:
       - apecloud/cert-manager-cainjector:v1.14.2
       - apecloud/cert-manager-controller:v1.14.2
@@ -356,7 +356,7 @@ cert-manager:
 spiderpool:
   - version: 0.9.3
     isEnterprise: false
-    isAddon: false
+    isAddon: true
     images:
       - apecloud/spiderpool-plugins:v0.9.2
       - apecloud/spiderpool-agent:v0.9.3
@@ -364,3 +364,10 @@ spiderpool:
       - apecloud/spiderpool-controller:v0.9.3
       - apecloud/spiderpool-controller:07195d2997e9839b586c0f95a32c23cf8dc96f1e
       - apecloud/multus-cni:v3.9.3
+kata:
+  - version: latest
+    isEnterprise: false
+    isAddon: true
+    images:
+      - apecloud/hpa-example:latest
+      - apecloud/kata-deploy:latest
