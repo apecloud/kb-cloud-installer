@@ -44,14 +44,6 @@ load_package_images() {
     image_package_name=$1
     image_package_version=$2
 
-    if [[ "${PARALLEL_LOAD}" == "true" ]]; then
-        cur_parallel_num=$(cat "${PARALLEL_FILE}")
-        if [[ $cur_parallel_num -lt ${MAX_PARALLEL_NUM} ]]; then
-            cur_parallel_num=$((cur_parallel_num + 1))
-            echo $cur_parallel_num > "${PARALLEL_FILE}"
-        fi
-    fi
-
     image_package_name="${image_package_name}-images-${image_package_version}.tar.gz"
     image_package_path="${image_package_name}"
     if [[ ! -f "${image_package_path}" ]]; then
@@ -61,6 +53,14 @@ load_package_images() {
     if [[ ! -f "${image_package_path}" ]]; then
         echo "Not found image package $image_package_name"
         return
+    fi
+
+    if [[ "${PARALLEL_LOAD}" == "true" ]]; then
+        cur_parallel_num=$(cat "${PARALLEL_FILE}")
+        if [[ $cur_parallel_num -lt ${MAX_PARALLEL_NUM} ]]; then
+            cur_parallel_num=$((cur_parallel_num + 1))
+            echo $cur_parallel_num > "${PARALLEL_FILE}"
+        fi
     fi
 
     echo "Loading image from file: $image_package_path"
