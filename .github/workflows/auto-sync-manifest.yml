@@ -3,7 +3,7 @@ name: Auto Sync Manifest
 on:
   workflow_dispatch:
     inputs:
-      RELEASE_VERSION:
+      VERSION:
         description: 'The version of release'
         type: string
         required: true
@@ -12,7 +12,7 @@ on:
 env:
   GITHUB_TOKEN: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
 
-run-name: Auto Sync Manifest ${{ inputs.RELEASE_VERSION }}
+run-name: Auto Sync Manifest ${{ inputs.VERSION }}
 
 jobs:
   sync-manifest:
@@ -22,7 +22,7 @@ jobs:
       - name: get version
         id: get-version
         run: |
-          RELEASE_VERSION="${{ inputs.RELEASE_VERSION }}"
+          RELEASE_VERSION="${{ inputs.VERSION }}"
           if [[ "${RELEASE_VERSION}" != "v"* ]]; then
               RELEASE_VERSION="v${RELEASE_VERSION}"
           fi
