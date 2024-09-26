@@ -26,7 +26,7 @@ download_images_package() {
     image_package_url="${IMAGE_BASE_URL}/${image_package_name}-images-${image_package_version}.tar.gz"
     echo "download image ${image_package_name} ${image_package_version}..."
     for i in {1..3}; do
-        ossutil cp -rf ${image_package_url} ./${PACKAGE_DIR}
+        ossutil cp -rf --checkpoint-dir=${PACKAGE_DIR}/tmp ${image_package_url} ./${PACKAGE_DIR}
         ret_cp=$?
         if [[ $ret_cp -eq 0 ]]; then
             echo "$(tput -T xterm setaf 2)download image ${image_package_name} ${image_package_version} package success$(tput -T xterm sgr0)"
@@ -101,6 +101,7 @@ main() {
         return
     fi
     mkdir -p ${PACKAGE_DIR}
+    mkdir -p ${PACKAGE_DIR}/tmp
 
     if [[ "${PARALLEL_DOWNLOAD}" == "true" ]]; then
         touch "${PARALLEL_FILE}"
