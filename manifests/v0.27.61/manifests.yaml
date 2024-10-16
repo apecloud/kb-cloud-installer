@@ -218,8 +218,7 @@ mysql:
       - apecloud/percona-xtrabackup:2.4
       - apecloud/mysql_audit_log:5.7.44
       - apecloud/mysql_audit_log:8.0.33
-      - apecloud/syncer:0.2.0
-      - apecloud/syncer:0.3.0
+      - apecloud/syncer:0.3.2
       - apecloud/xtrabackup:2.4
       - apecloud/xtrabackup:8.0
       - apecloud/xtrabackup:8.4
