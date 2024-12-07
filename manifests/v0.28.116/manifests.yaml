@@ -259,6 +259,7 @@ mysql:
       - apecloud/percona-xtrabackup:8.0.32
       - apecloud/proxysql:2.4.4
       - apecloud/syncer:0.3.8
+      - apecloud/syncer:0.3.0
       - apecloud/wal-g-mysql:2.0.1-1-ubuntu
       - apecloud/xtrabackup:2.4
       - apecloud/xtrabackup:8.0
