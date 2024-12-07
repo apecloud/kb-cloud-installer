@@ -103,7 +103,7 @@ load_image_package() {
         if [[ "${chart_name}" == "kubeblocks-cloud" ]]; then
             chart_name="kubeblocks-enterprise"
         fi
-        if [[ "${chart_enable}" == "true" && -n "${chart_version}" && "${is_addon}" == "true" ]]; then
+        if [[ "${chart_enable}" == "true" && -n "${chart_version}" && ("${is_addon}" == "true" || "${chart_name}" == "kubeblocks-enterprise") ]]; then
             if [[ "${PARALLEL_LOAD}" == "true" ]]; then
                 while [[ $(cat "${PARALLEL_FILE}") -ge ${MAX_PARALLEL_NUM} ]]; do
                     sleep 1

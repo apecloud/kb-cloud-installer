@@ -9,6 +9,7 @@ MAX_PARALLEL_NUM=4
 PARALLEL_FILE="download_manifests_offline_images_parallel.txt"
 PACKAGE_DIR="manifests_offline_images_package"
 IMAGE_BASE_URL="oss://kubeblocks-oss/images"
+CHART_BASE_URL="oss://kubeblocks-oss/charts"
 OSS_ENDPOINT="oss-cn-zhangjiakou.aliyuncs.com"
 
 download_images_package() {
@@ -43,6 +44,23 @@ download_images_package() {
         fi
     fi
 
+}
+
+download_charts_package() {
+    chart_package_name=$1
+    chart_package_version=$2
+
+    chart_package_url="${CHART_BASE_URL}/${chart_package_name}-charts-${chart_package_version}.tar.gz"
+    echo "download chart ${chart_package_name} ${chart_package_version}..."
+    for i in {1..3}; do
+        ossutil cp -rf --checkpoint-dir=${PACKAGE_DIR}/tmp ${chart_package_url} ./${PACKAGE_DIR}
+        ret_cp=$?
+        if [[ $ret_cp -eq 0 ]]; then
+            echo "$(tput -T xterm setaf 2)download chart ${chart_package_name} ${chart_package_version} package success$(tput -T xterm sgr0)"
+            break
+        fi
+        sleep 1
+    done
 }
 
 check_oss_tool() {
@@ -115,6 +133,7 @@ main() {
         is_addon=$(yq e ".${chart_name}[0].isAddon" ${MANIFESTS_FILE})
         if [[ "${chart_name}" == "kubeblocks-cloud" ]]; then
             chart_name="kubeblocks-enterprise"
+            download_charts_package "$chart_name" "$chart_version"
         fi
 
         if [[ "${chart_enable}" == "true" && -n "${chart_version}" && ("${is_addon}" == "true" || "${chart_name}" == "kubeblocks-enterprise") ]]; then
