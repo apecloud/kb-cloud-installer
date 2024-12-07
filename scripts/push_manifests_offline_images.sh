@@ -144,6 +144,7 @@ push_images() {
         return
     fi
 
+    pushed_images_list=$( echo "$images_list_all" | (grep "${REGISTRY_ADDRESS}" || true) )
     images_list=$( echo "$images_list_all" | grep -v "${REGISTRY_ADDRESS}" )
 
     for image in ${images_list}; do
@@ -158,6 +159,18 @@ push_images() {
                 new_image="${REGISTRY_ADDRESS}/${new_image}"
             ;;
         esac
+
+        pushed_new_image=0
+        for pushed_image in ${pushed_images_list}; do
+            if [[ "${pushed_image}" == "$new_image" ]]; then
+                pushed_new_image=1
+                break
+            fi
+        done
+
+        if [[ $pushed_new_image -eq 1 ]]; then
+            continue
+        fi
         echo "$new_image"
         for i in {1..3}; do
             ${TOOL_CLI} tag "$image" "$new_image"
