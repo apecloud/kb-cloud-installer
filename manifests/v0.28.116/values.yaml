@@ -94,7 +94,7 @@ cert-manager:
   enable: false
 
 metrics-server:
-  enable: false
+  enable: true
 
 spiderpool:
   enable: false
