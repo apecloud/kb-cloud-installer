@@ -13,7 +13,8 @@ IMAGE_BASE_URL="oss://kubeblocks-oss/images"
 CHART_BASE_URL="oss://kubeblocks-oss/charts"
 OSS_ENDPOINT="oss-cn-zhangjiakou.aliyuncs.com"
 
-if [[ "${ARM64_FLAG}" == "true" || "${ARM64_FLAG}" == "arm" || "${ARM64_FLAG}" == "arm64" ]]; then
+if [[ "${ARM64_FLAG}" == "true" || "${ARM64_FLAG}" == "arm" || "${ARM64_FLAG}" == "ARM" || "${ARM64_FLAG}" == "arm64" || "${ARM64_FLAG}" == "ARM64" ]]; then
+    echo "download arm64 images..."
     IMAGE_BASE_URL="${IMAGE_BASE_URL}/arm64"
 fi
 
