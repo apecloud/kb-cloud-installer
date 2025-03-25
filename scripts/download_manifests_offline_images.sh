@@ -3,7 +3,8 @@ OSS_ACCESS_KEY_ID=${1:-""}
 OSS_ACCESS_KEY_SECRET=${2:-""}
 MANIFESTS_FILE=${3:-"manifests.yaml"}
 VALUES_FILE=${4:-"values.yaml"}
-PARALLEL_DOWNLOAD=${5:-"true"}
+ARM64_FLAG=${5:-"false"}
+PARALLEL_DOWNLOAD=${6:-"true"}
 
 MAX_PARALLEL_NUM=4
 PARALLEL_FILE="download_manifests_offline_images_parallel.txt"
@@ -11,6 +12,10 @@ PACKAGE_DIR="manifests_offline_images_package"
 IMAGE_BASE_URL="oss://kubeblocks-oss/images"
 CHART_BASE_URL="oss://kubeblocks-oss/charts"
 OSS_ENDPOINT="oss-cn-zhangjiakou.aliyuncs.com"
+
+if [[ "${ARM64_FLAG}" == "true" || "${ARM64_FLAG}" == "arm" || "${ARM64_FLAG}" == "arm64" ]]; then
+    IMAGE_BASE_URL="${IMAGE_BASE_URL}/arm64"
+fi
 
 download_images_package() {
     image_package_name=$1
