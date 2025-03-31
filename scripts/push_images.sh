@@ -62,13 +62,13 @@ load_image_package() {
 push_images() {
     images_list_all=""
     if [[ "${TOOL_CLI}" == *"sealos" ]]; then
-        images_list_all=$( sealos images --all --format "{{.Name}}:{{.Tag}}" )
+        images_list_all=$( sealos images --all --format "{{.Name}}:{{.Tag}}" | (grep "apecloud/" || true) )
     else
-        images_list_all=$( docker images --all --format "{{.Repository}}:{{.Tag}}" )
+        images_list_all=$( docker images --all --format "{{.Repository}}:{{.Tag}}" | (grep "apecloud/" || true) )
     fi
     images_ret=$?
     if [ $images_ret -ne 0 ]; then
-        images_list_all=$( ${TOOL_CLI} images --all | awk '{print $1":"$2}' | grep -v "REPOSITORY:TAG" )
+        images_list_all=$( ${TOOL_CLI} images --all | awk '{print $1":"$2}' | grep -v "REPOSITORY:TAG" | (grep "apecloud/" || true) )
     fi
 
     if [[ -z "${images_list_all}" ]]; then
@@ -91,6 +91,11 @@ push_images() {
             ;;
         esac
         echo "$new_image"
+        if [[ "$new_image" != *"${REGISTRY_ADDRESS}/apecloud/"* ]]; then
+            echo "$(tput -T xterm setaf 3)skip tag image:$image$(tput -T xterm sgr0)"
+            continue
+        fi
+
         for i in {1..3}; do
             ${TOOL_CLI} tag "$image" "$new_image"
             tag_ret=$?
