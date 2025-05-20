@@ -2,20 +2,20 @@
 # kubeblocks cloud components
 ##########################
 kubeblocks-cloud:
-  - version: v1.1.0-alpha.46
+  - version: v1.1.0-alpha.32
     isEnterprise: true
     isAddon: false
     images:
-      - apecloud/openconsole:v1.1.0-alpha.46
-      - apecloud/openconsole:v1.1.0-alpha.46-console
-      - apecloud/openconsole:v1.1.0-alpha.46-admin
-      - apecloud/apiserver:v1.1.0-alpha.46
-      - apecloud/cubetran-front:v1.1.0-alpha.46
+      - apecloud/openconsole:v1.1.0-alpha.32
+      - apecloud/openconsole:v1.1.0-alpha.32-console
+      - apecloud/openconsole:v1.1.0-alpha.32-admin
+      - apecloud/apiserver:v1.1.0-alpha.32
+      - apecloud/cubetran-front:v1.1.0-alpha.32
       - apecloud/cubetran-core:0.2.2
-      - apecloud/cr4w:v1.1.0-alpha.46
-      - apecloud/apecloud-addon-charts:v1.1.0-alpha.46
-      - apecloud/kb-cloud-hook:v1.1.0-alpha.46
-      - apecloud/kubeblocks-installer:v1.1.0-alpha.46-0.9.4-beta.26-offline
+      - apecloud/cr4w:v1.1.0-alpha.32
+      - apecloud/apecloud-addon-charts:v1.1.0-alpha.32
+      - apecloud/kb-cloud-hook:v1.1.0-alpha.32
+      - apecloud/kubeblocks-installer:v1.1.0-alpha.32-0.9.4-beta.19-offline
       - apecloud/dms:0.0.3-alpha.7
       - apecloud/ob-grpc-server:0.1.5
       - apecloud/redisinsight:2.66
@@ -62,11 +62,11 @@ kubeblocks-cloud:
       - apecloud/apecloud-addon-charts:tdsql-0.9.3
       - apecloud/apecloud-addon-charts:influxdb-0.9.3
 kb-cloud-installer:
-  - version: 1.1.0-alpha.46
+  - version: 1.1.0-alpha.32
     isEnterprise: false
     isAddon: false
     images:
-      - apecloud/kb-cloud-installer:v1.1.0-alpha.46
+      - apecloud/kb-cloud-installer:v1.1.0-alpha.32
       - apecloud/postgres-exporter:v0.13.2
 postgres-operator:
   - version: 1.12.2
