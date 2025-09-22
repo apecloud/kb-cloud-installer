@@ -7,20 +7,20 @@
 # kubeblocks cloud components
 ##########################
 kubeblocks-cloud:
-  - version: v2.0.1
+  - version: v2.0.0
     isEnterprise: true
     isAddon: false
     images:
-      - apecloud/openconsole:v2.0.1
-      - apecloud/openconsole:v2.0.1-console
-      - apecloud/openconsole:v2.0.1-admin
-      - apecloud/apiserver:v2.0.1
-      - apecloud/cubetran-front:v2.0.1
+      - apecloud/openconsole:v2.0.0
+      - apecloud/openconsole:v2.0.0-console
+      - apecloud/openconsole:v2.0.0-admin
+      - apecloud/apiserver:v2.0.0
+      - apecloud/cubetran-front:v2.0.0
       - apecloud/cubetran-core:0.2.2
-      - apecloud/cr4w:v2.0.1
-      - apecloud/kb-cloud-hook:v2.0.1
-      - apecloud/kb-cloud-docs:v2.0.1
-      - apecloud/kubeblocks-installer:v2.0.1-offline
+      - apecloud/cr4w:v2.0.0
+      - apecloud/kb-cloud-hook:v2.0.0
+      - apecloud/kb-cloud-docs:v2.0.0
+      - apecloud/kubeblocks-installer:v2.0.0-offline
       - apecloud/dms:0.0.3-alpha.15
       - apecloud/apecloud-mcp:1.2.0-alpha.5
       - apecloud/ob-grpc-server:0.1.5
@@ -107,11 +107,11 @@ kubeblocks-cloud:
       - apecloud/apecloud-addon-charts:oracle-0.9.0
       - apecloud/apecloud-addon-charts:oracle-1.0.1-beta.0
 kb-cloud-installer:
-  - version: 2.0.1
+  - version: 2.0.0
     isEnterprise: false
     isAddon: false
     images:
-      - apecloud/kb-cloud-installer:v2.0.1
+      - apecloud/kb-cloud-installer:v2.0.0
       - apecloud/postgres-exporter:v0.13.2
 postgres-operator:
   - version: 1.12.2
