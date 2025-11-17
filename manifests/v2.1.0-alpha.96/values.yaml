@@ -1,0 +1,150 @@
+# registry of image source
+registry: apecloud-registry.cn-zhangjiakou.cr.aliyuncs.com
+
+# kubeblocks-enterprise
+kubeblocks-cloud:
+  enable: true
+
+kb-cloud-installer:
+  enable: true
+
+postgres-operator:
+  enable: true
+
+casdoor-helm-charts:
+  enable: true
+
+kubeblocks:
+  enable: true
+
+gemini:
+  enable: true
+
+gemini-monitor:
+  enable: true
+
+minio:
+  enable: true
+
+victoria-metrics:
+  enable: true
+
+ape-local-csi-driver:
+  enable: true
+
+kubebench:
+  enable: true
+
+
+# addons
+clickhouse:
+  enable: true
+
+elasticsearch:
+  enable: true
+
+kafka:
+  enable: true
+
+mongodb:
+  enable: true
+
+mysql:
+  enable: true
+
+oceanbase:
+  enable: true
+
+postgresql:
+  enable: true
+
+qdrant:
+  enable: true
+
+rabbitmq:
+  enable: true
+
+redis:
+  enable: true
+
+starrocks:
+  enable: true
+
+zookeeper:
+  enable: true
+
+damengdb:
+  enable: true
+
+kingbase:
+  enable: true
+
+tidb:
+  enable: true
+
+vastbase:
+  enable: true
+
+gaussdb:
+  enable: true
+
+loki:
+  enable: true
+
+mssql:
+  enable: true
+
+oceanbase-proxy:
+  enable: true
+
+pulsar:
+  enable: true
+
+rocketmq:
+  enable: true
+
+goldendb:
+  enable: true
+
+tdsql:
+  enable: true
+
+influxdb:
+  enable: true
+
+oracle:
+  enable: true
+
+etcd:
+  enable: true
+
+milvus:
+  enable: true
+
+nebula:
+  enable: true
+
+tdengine:
+  enable: true
+
+doris:
+  enable: true
+
+# applications
+ingress-nginx:
+  enable: true
+
+metallb:
+  enable: true
+
+cert-manager:
+  enable: false
+
+metrics-server:
+  enable: true
+
+spiderpool:
+  enable: false
+
+kata:
+  enable: false
