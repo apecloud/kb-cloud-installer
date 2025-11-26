@@ -1,0 +1,1189 @@
+#
+# You can use following command to get the list of all the community and enterprise addons:
+# yq eval 'to_entries | map(select(.value[0].isAddon == true and .value[0].type == "engine")) | {"community": map(select(.value[0].isEnterprise == false)) | map(.key) | sort, "enterprise": map(select(.value[0].isEnterprise == true)) | map(.key) | sort}' deploy-manifests.yaml
+#
+
+##########################
+# kubeblocks cloud components
+##########################
+kubeblocks-cloud:
+  - version: v2.1.0-alpha.108
+    isEnterprise: true
+    isAddon: false
+    images:
+      - apecloud/openconsole:v2.1.0-alpha.108
+      - apecloud/openconsole:v2.1.0-alpha.108-console
+      - apecloud/openconsole:v2.1.0-alpha.108-admin
+      - apecloud/apiserver:v2.1.0-alpha.108
+      - apecloud/cubetran-front:v2.1.0-alpha.108
+      - apecloud/cubetran-core:0.2.2
+      - apecloud/cr4w:v2.1.0-alpha.108
+      - apecloud/kb-cloud-hook:v2.1.0-alpha.108
+      - apecloud/kb-cloud-docs:v2.1.0-alpha.108
+      - apecloud/kubeblocks-installer:v2.1.0-alpha.108-offline
+      - apecloud/dms:0.0.3-alpha.18
+      - apecloud/apecloud-mcp:2.1.0-alpha.0
+      - apecloud/ob-grpc-server:0.1.5
+      - apecloud/redisinsight:2.70.0
+      - apecloud/zoonavigator:1.1.3
+      - apecloud/redis:7.0.5
+      - apecloud/grafana:10.1.1
+      - apecloud/bats:v1.4.1
+      - apecloud/workflow-controller:v3.6.12
+      - apecloud/argocli:v3.6.12
+      - apecloud/argoexec:v3.6.12
+      - apecloud/cloudshell:1.7.9
+      - apecloud/servicemirror:0.4.4
+      - apecloud/busybox:latest
+      - apecloud/netshoot:0.13
+      - apecloud/curl:latest
+      - apecloud/apecloud-addon-charts:clickhouse-0.9.3
+      - apecloud/apecloud-addon-charts:clickhouse-1.0.2
+      - apecloud/apecloud-addon-charts:damengdb-0.9.2
+      - apecloud/apecloud-addon-charts:damengdb-1.0.2
+      - apecloud/apecloud-addon-charts:elasticsearch-0.9.1
+      - apecloud/apecloud-addon-charts:elasticsearch-1.0.2
+      - apecloud/apecloud-addon-charts:gaussdb-0.9.2
+      - apecloud/apecloud-addon-charts:gaussdb-1.0.1
+      - apecloud/apecloud-addon-charts:kafka-0.9.1
+      - apecloud/apecloud-addon-charts:kafka-1.0.2
+      - apecloud/apecloud-addon-charts:kingbase-0.9.1
+      - apecloud/apecloud-addon-charts:kingbase-1.0.1
+      - apecloud/apecloud-addon-charts:loki-0.9.2
+      - apecloud/apecloud-addon-charts:loki-1.0.2
+      - apecloud/apecloud-addon-charts:minio-0.9.1
+      - apecloud/apecloud-addon-charts:minio-1.0.1-beta.0
+      - apecloud/apecloud-addon-charts:mongodb-0.9.5
+      - apecloud/apecloud-addon-charts:mongodb-1.0.2
+      - apecloud/apecloud-addon-charts:mssql-0.9.2
+      - apecloud/apecloud-addon-charts:mssql-1.0.2
+      - apecloud/apecloud-addon-charts:mysql-0.9.4
+      - apecloud/apecloud-addon-charts:mysql-1.0.2
+      - apecloud/apecloud-addon-charts:greatdb-0.9.1
+      - apecloud/apecloud-addon-charts:greatdb-1.0.0
+      - apecloud/apecloud-addon-charts:oceanbase-0.9.5
+      - apecloud/apecloud-addon-charts:oceanbase-1.0.2
+      - apecloud/apecloud-addon-charts:oceanbase-proxy-0.9.2
+      - apecloud/apecloud-addon-charts:oceanbase-proxy-1.0.1
+      - apecloud/apecloud-addon-charts:postgresql-0.9.7
+      - apecloud/apecloud-addon-charts:postgresql-1.0.2
+      - apecloud/apecloud-addon-charts:pulsar-0.9.1
+      - apecloud/apecloud-addon-charts:qdrant-0.9.1
+      - apecloud/apecloud-addon-charts:qdrant-1.0.2
+      - apecloud/apecloud-addon-charts:rabbitmq-0.9.0
+      - apecloud/apecloud-addon-charts:rabbitmq-1.0.2
+      - apecloud/apecloud-addon-charts:redis-0.9.7
+      - apecloud/apecloud-addon-charts:redis-1.0.2
+      - apecloud/apecloud-addon-charts:rocketmq-0.9.2
+      - apecloud/apecloud-addon-charts:rocketmq-1.0.2
+      - apecloud/apecloud-addon-charts:starrocks-0.9.1
+      - apecloud/apecloud-addon-charts:starrocks-1.0.0
+      - apecloud/apecloud-addon-charts:tidb-0.9.0
+      - apecloud/apecloud-addon-charts:tidb-1.0.1-beta.0
+      - apecloud/apecloud-addon-charts:vastbase-0.9.0
+      - apecloud/apecloud-addon-charts:vastbase-1.0.0
+      - apecloud/apecloud-addon-charts:victoria-metrics-0.9.1
+      - apecloud/apecloud-addon-charts:victoria-metrics-1.0.1-beta.0
+      - apecloud/apecloud-addon-charts:zookeeper-0.9.1
+      - apecloud/apecloud-addon-charts:zookeeper-1.0.2
+      - apecloud/apecloud-addon-charts:goldendb-0.9.0
+      - apecloud/apecloud-addon-charts:goldendb-1.0.0
+      - apecloud/apecloud-addon-charts:tdsql-0.9.3
+      - apecloud/apecloud-addon-charts:tdsql-1.0.0
+      - apecloud/apecloud-addon-charts:influxdb-0.9.3
+      - apecloud/apecloud-addon-charts:influxdb-1.0.3-beta.0
+      - apecloud/apecloud-addon-charts:etcd-0.9.0
+      - apecloud/apecloud-addon-charts:etcd-1.0.2
+      - apecloud/apecloud-addon-charts:milvus-0.9.2
+      - apecloud/apecloud-addon-charts:milvus-1.0.2-beta.0
+      - apecloud/apecloud-addon-charts:nebula-0.9.1
+      - apecloud/apecloud-addon-charts:nebula-1.0.1
+      - apecloud/apecloud-addon-charts:tdengine-0.9.1
+      - apecloud/apecloud-addon-charts:tdengine-1.0.1
+      - apecloud/apecloud-addon-charts:oracle-0.9.0
+      - apecloud/apecloud-addon-charts:oracle-1.0.2
+      - apecloud/apecloud-addon-charts:doris-1.0.2
+      - apecloud/apecloud-addon-charts:hadoop-1.0.2
+      - apecloud/apecloud-addon-charts:hive-1.0.2
+kb-cloud-installer:
+  - version: 2.1.0-alpha.108
+    isEnterprise: false
+    isAddon: false
+    images:
+      - apecloud/kb-cloud-installer:v2.1.0-alpha.108
+      - apecloud/postgres-exporter:v0.13.2
+postgres-operator:
+  - version: 1.12.2
+    isEnterprise: false
+    isAddon: false
+    images:
+      - apecloud/postgres-operator:v1.12.2
+      - apecloud/pgbouncer:master-32
+      - apecloud/spilo-16:3.2-p3
+      - apecloud/logical-backup:v1.12.2
+casdoor-helm-charts:
+  - version: v1.721.0
+    isEnterprise: false
+    isAddon: false
+    images:
+      - apecloud/casdoor:v1.721.0
+kubeblocks:
+  - version: 0.9.6-beta.6
+    isEnterprise: false
+    isAddon: false
+    images:
+      - apecloud/kubeblocks:0.9.6-beta.6
+      - apecloud/kubeblocks-dataprotection:0.9.6-beta.6
+      - apecloud/kubeblocks-datascript:0.9.6-beta.6
+      - apecloud/kubeblocks-tools:0.9.6-beta.6
+      - apecloud/kubeblocks-charts:0.9.6-beta.6
+      - apecloud/datasafed:0.2.3
+      - apecloud/snapshot-controller:v6.2.1
+  - version: 1.0.2-beta.15
+    isEnterprise: false
+    isAddon: false
+    images:
+      - apecloud/kubeblocks:1.0.2-beta.15
+      - apecloud/kubeblocks-dataprotection:1.0.2-beta.15
+      - apecloud/kubeblocks-tools:1.0.2-beta.15
+      - apecloud/datasafed:0.2.3
+      - apecloud/kubeblocks-charts:1.0.2-beta.15
+gemini:
+  - version: 0.11.0-beta.1
+    isEnterprise: false
+    isAddon: false
+    images:
+      - apecloud/gemini:0.11.0-beta.1
+      - apecloud/gemini-tools:0.11.0-beta.1
+      - apecloud/easymetrics:0.11.0-beta.1
+      - apecloud/busybox:1.36
+      - apecloud/vmalert:v1.95.1
+      - apecloud/alertmanager:v0.28.0
+      - apecloud/servicemirror:0.4.4
+      - apecloud/configmap-reload:v0.5.0
+      # follow images are used by dts
+      - apecloud/kubeblocks-tools:0.8.2
+      - apecloud/cubetran-platform:0.6.3
+      - apecloud/cubetran-sidecar:0.1.2
+      - apecloud/cubetran-core:0.2.2
+      - apecloud/ape-dts:2.0.25-alpha.4
+      - apecloud/postgresql:14
+      - apecloud/mysql:8.0.33
+      - apecloud/mongo:6.0.6
+gemini-monitor:
+  - version: 0.11.0-beta.1
+    isEnterprise: false
+    isAddon: false
+    images:
+      - apecloud/oteld:0.11.0-beta.5
+ape-local-csi-driver:
+  - version: 0.4.3
+    isEnterprise: true
+    isAddon: true
+    images:
+      - apecloud/ape-local:0.4.3
+      - apecloud/livenessprobe:v2.12.0
+      - apecloud/csi-node-driver-registrar:v2.10.0
+      - apecloud/csi-attacher:v4.5.0
+      - apecloud/csi-provisioner:v4.0.0
+      - apecloud/csi-resizer:v1.10.0
+      - apecloud/kubectl:1.29
+kubebench:
+  - version: 0.0.1
+    isEnterprise: false
+    isAddon: true
+    images:
+      - apecloud/kubebench:0.0.12
+      - apecloud/customsuites:latest
+      - apecloud/benchmarksql:1.0
+      - apecloud/go-ycsb:latest
+      - apecloud/spilo:14.8.0
+      - apecloud/tpcds:latest
+      - apecloud/go-ycsb:latest
+      - apecloud/fio:latest
+      - apecloud/redis:7.0.5
+##########################
+# engine addons
+##########################
+clickhouse:
+  - version: 0.9.3
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/busybox:1.37.0-musl
+      - apecloud/clickhouse-backup-full:2.6.14
+      - apecloud/clickhouse:22.9.4-debian-11-r1
+      - apecloud/clickhouse:24.8.3-debian-12-r1
+      - apecloud/clickhouse:25.4.4-debian-12-r1
+    serviceVersions:
+      - 22.9.4
+      - 24.8.3
+      - 25.4.4
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/busybox:1.37.0-musl
+      - apecloud/clickhouse-backup-full:2.6.14
+      - apecloud/clickhouse:22.8.21-debian-11-r33
+      - apecloud/clickhouse:24.8.3-debian-12-r1
+      - apecloud/clickhouse:25.4.4-debian-12-r1
+    serviceVersions:
+      - 22.8.21
+      - 24.8.3
+      - 25.4.4
+elasticsearch:
+  - version: 0.9.1
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/curl-jq:0.1.0
+      - apecloud/elasticsearch-plugins:0.1.0
+      - apecloud/elasticsearch:6.8.23
+      - apecloud/elasticsearch:7.10.1
+      - apecloud/elasticsearch:8.15.5
+      - apecloud/kibana:6.8.23
+      - apecloud/kibana:7.10.1
+      - apecloud/kibana:8.15.5
+      - apecloud/elasticsearch-exporter:v1.7.0
+      - apecloud/elasticsearch-agent:0.1.0
+      - apecloud/curl-jq:0.1.0
+      - apecloud/elasticsearch:8.8.2
+    serviceVersions:
+      - 6.8.23
+      - 7.10.1
+      - 8.15.5
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/curl-jq:0.1.0
+      - apecloud/elasticsearch-plugins:0.1.0
+      - apecloud/elasticsearch:6.8.23
+      - apecloud/elasticsearch:7.10.1
+      - apecloud/elasticsearch:8.8.2
+      - apecloud/elasticsearch:8.15.5
+      - apecloud/kibana:6.8.23
+      - apecloud/kibana:7.10.1
+      - apecloud/kibana:8.15.5
+      - apecloud/elasticsearch-exporter:v1.7.0
+      - apecloud/elasticsearch-agent:0.1.0
+    serviceVersions:
+      - 6.8.23
+      - 7.10.1
+      - 8.15.5
+kafka:
+  - version: 0.9.1
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/jmx-exporter:0.18.0-debian-11-r20
+      - apecloud/kafka-exporter:1.6.0-debian-11-r67
+      - apecloud/kafka:2.8.2
+      - apecloud/zookeeper:3.7.2
+      - apecloud/kafka:3.3.2-debian-11-r54
+    serviceVersions:
+      - "2.8.2"
+      - "3.7.2"
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/jmx-exporter:0.18.0-debian-11-r20
+      - apecloud/kafka-exporter:1.6.0-debian-11-r67
+      - apecloud/kafka:2.8.2-r1
+      - apecloud/kafka:3.9.0-debian-12-r13
+      - apecloud/kafka:3.3.2-debian-11-r54
+      - apecloud/kafkactl:v5.15.0
+    serviceVersions:
+      - "2.8.2"
+      - "3.9.0"
+mongodb:
+  - version: 0.9.5
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/kubectl:1.29
+      - apecloud/mongodb_exporter:0.44.0
+      - apecloud/percona-backup-mongodb:2.5.0-multi
+      - apecloud/percona-backup-mongodb:2.9.1
+      - apecloud/percona-server-mongodb:4.4.29-multi
+      - apecloud/percona-server-mongodb:5.0.29
+      - apecloud/percona-server-mongodb:5.0.29-multi
+      - apecloud/percona-server-mongodb:6.0.21
+      - apecloud/percona-server-mongodb:7.0.18
+      - apecloud/percona-server-mongodb:8.0.8
+      - apecloud/syncer:0.6.6
+      - apecloud/wal-g-mongo:3.0.0
+    serviceVersions:
+      - 4.4.29
+      - 5.0.29
+      - 6.0.21
+      - 7.0.18
+      - 8.0.8
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/kubectl:1.29
+      - apecloud/mongodb_exporter:0.44.0
+      - apecloud/percona-backup-mongodb:2.5.0-multi
+      - apecloud/percona-backup-mongodb:2.9.1
+      - apecloud/percona-server-mongodb:4.4.29-multi
+      - apecloud/percona-server-mongodb:5.0.29-multi
+      - apecloud/percona-server-mongodb:6.0.21
+      - apecloud/percona-server-mongodb:7.0.18
+      - apecloud/percona-server-mongodb:8.0.8
+      - apecloud/syncer:0.6.6
+      - apecloud/wal-g-mongo:3.0.0
+    serviceVersions:
+      - 4.4.29
+      - 5.0.29
+      - 6.0.21
+      - 7.0.18
+      - 8.0.8
+mysql:
+  - version: 0.9.4
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/mysql:5.7.44
+      - apecloud/mysql:8.0.39
+      - apecloud/mysql:8.0.33
+      - apecloud/mysql:8.4.2
+      - apecloud/mysql_audit_log:5.7.44
+      - apecloud/mysql_audit_log:8.0.33
+      - apecloud/orc-tools:1.0.2
+      - apecloud/orc-tools:1.0.3
+      - apecloud/percona-xtrabackup:2.4
+      - apecloud/percona-xtrabackup:8.0
+      - apecloud/percona-xtrabackup:8.4
+      - apecloud/proxysql:2.4.4
+      - apecloud/syncer:0.5.0
+      - apecloud/wal-g-mysql:3.0.0-ubuntu
+      - apecloud/xtrabackup:2.4
+      - apecloud/xtrabackup:8.0
+      - apecloud/xtrabackup:8.4
+      - apecloud/mysqld-exporter:0.15.1
+      - apecloud/jemalloc:5.3.0
+    serviceVersions:
+      - 5.7.44
+      - 8.0.39
+      - 8.4.2
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: false
+    type: engine
+    images:
+      - apecloud/mysql:5.7.44
+      - apecloud/mysql:8.0.39
+      - apecloud/mysql:8.4.7
+      - apecloud/mysql_audit_log:5.7.44
+      - apecloud/mysql_audit_log:8.0.33
+      - apecloud/orc-tools:1.0.2
+      - apecloud/proxysql:2.4.4
+      - apecloud/syncer:0.6.5
+      - apecloud/wal-g-mysql:3.0.0-ubuntu
+      - apecloud/mysqld-exporter:0.15.1
+      - apecloud/jemalloc:5.3.0
+      - apecloud/mysql:8.0.30
+      - apecloud/percona-xtrabackup:8.0
+      - apecloud/percona-xtrabackup:2.4
+      - apecloud/percona-xtrabackup:8.4
+      - apecloud/xtrabackup:2.4
+      - apecloud/xtrabackup:8.0
+      - apecloud/xtrabackup:8.4
+    serviceVersions:
+      - 5.7.44
+      - 8.0.39
+      - 8.4.7
+greatdb:
+  - version: 0.9.1
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/greatdb:1.0.0.6118032
+      - apecloud/percona-xtrabackup:8.0
+      - apecloud/syncer:0.6.3
+      - apecloud/wal-g-mysql:3.0.0-ubuntu
+      - apecloud/jemalloc:5.3.0
+    serviceVersions:
+      - 1.0.0
+  - version: 1.0.0
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/greatdb:1.0.0.6118032
+      - apecloud/percona-xtrabackup:8.0
+      - apecloud/syncer:0.6.5
+      - apecloud/wal-g-mysql:3.0.0-ubuntu
+      - apecloud/jemalloc:5.3.0
+    serviceVersions:
+      - 1.0.0
+oceanbase:
+  - version: 0.9.5
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/obtools:4.2.1
+      - apecloud/obagent:4.2.1-100000092023101717
+      - apecloud/oceanbase-ent:4.2.1.7-107020012024061213
+      - apecloud/oceanbase-ent:4.2.1.7-107020012024061213-ocp
+      - apecloud/syncer:0.4.2
+    serviceVersions:
+      - 4.2.107-BP7-Hotfix2
+  - version: 1.0.2
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/obtools:4.2.1
+      - apecloud/obagent:4.2.2-100000042024011120
+      - apecloud/oceanbase-ent:4.2.1.7-107020012024061213-ocp
+      - apecloud/syncer:0.6.5
+    serviceVersions:
+      - 4.2.1-BP7-Hotfix2
+postgresql:
+  - version: 0.9.7
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/postgres-exporter:v0.15.0
+      - apecloud/pgbouncer:1.19.0
+      - apecloud/spilo-init:0.2
+      - apecloud/spilo:12.15.0-pgvector-v0.6.1
+      - apecloud/spilo:14.8.0-pgvector-v0.6.1
+      - apecloud/wal-g-pg:3.0.0
+      - apecloud/spilo:12.22
+      - apecloud/spilo:14.18
+      - apecloud/spilo:15.13
+      - apecloud/spilo:16.9
+      - apecloud/spilo:17.5
+      - apecloud/spilo:15.7.0
+      - apecloud/spilo:16.4.0
+    serviceVersions:
+      - 12.22.0
+      - 14.18.0
+      - 15.13.0
+      - 16.9.0
+      - 17.5.0
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/dbctl:0.2.0
+      - apecloud/wal-g-pg:3.0.0
+      - apecloud/pgbouncer:1.19.0
+      - apecloud/postgres-exporter:v0.15.0
+      - apecloud/spilo-init:0.2
+      - apecloud/spilo:12.22
+      - apecloud/spilo:14.18
+      - apecloud/spilo:15.13
+      - apecloud/spilo:16.9
+      - apecloud/spilo:17.5
+      - apecloud/spilo:12.14.0-pgvector-v0.6.1
+      - apecloud/spilo:14.7.2-pgvector-v0.6.1
+      - apecloud/spilo:15.7.0
+      - apecloud/spilo:16.4.0
+    serviceVersions:
+      - 12.22.0
+      - 14.18.0
+      - 15.13.0
+      - 17.5.0
+      - 16.9.0
+qdrant:
+  - version: 0.9.1
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/curl-jq:0.1.0
+      - apecloud/qdrant:v1.13.4
+    serviceVersions:
+      - 1.13.4
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/qdrant-tools:0.1.0
+      - apecloud/qdrant:v1.15.4
+    serviceVersions:
+      - 1.15.4
+rabbitmq:
+  - version: 0.9.0
+    isEnterprise: false
+    isAddon: true
+    type: engine - apecloud/rabbitmq:3.13.7-management
+    serviceVersions:
+      - 3.13.7
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/rabbitmq:3.13.7-management
+      - apecloud/rabbitmq:4.0.9-management
+    serviceVersions:
+      - 3.13.7
+      - 4.0.9
+redis:
+  - version: 0.9.7
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/ape-dts:2.0.24
+      - apecloud/ape-dts:redis.reshard.2.0.9
+      - apecloud/busybox:1.36
+      - apecloud/twemproxy:0.5.0
+      - apecloud/redis-stack-server:6.2.6-v18
+      - apecloud/redis-stack-server:7.0.6-RC4
+      - apecloud/redis-stack-server:7.2.0-v14
+      - apecloud/redis-stack-server:7.4.0-v7
+      - apecloud/redis-stack-server:7.2.0-v19
+      - apecloud/redis:8.2.2
+    serviceVersions:
+      - 6.2.17
+      - 7.4.6
+      - 8.2.2
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/ape-dts:2.0.24
+      - apecloud/ape-dts:redis.reshard.2.0.9
+      - apecloud/busybox:1.36
+      - apecloud/twemproxy:0.5.0
+      - apecloud/redis-stack-server:6.2.6-v18
+      - apecloud/redis-stack-server:7.4.0-v7
+      - apecloud/redis-stack-server:7.2.0-v18
+      - apecloud/redis-stack-server:7.2.0-v19
+      - apecloud/dbctl:0.1.8
+      - apecloud/agamotto:0.1.2-beta.1
+      - apecloud/redis:8.2.2
+    serviceVersions:
+      - 6.2.17
+      - 7.4.6
+      - 8.2.2
+starrocks:
+  - version: 0.9.1
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/nginx:1.24.0
+      - apecloud/be-ubuntu:3.4.1
+      - apecloud/cn-ubuntu:3.2.2
+      - apecloud/fe-ubuntu:3.2.2
+      - apecloud/cn-ubuntu:3.4.1
+      - apecloud/fe-ubuntu:3.4.1
+      - apecloud/starrocks-tools:3.2.2
+    serviceVersions:
+      - 3.4.1
+  - version: 1.0.0
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/nginx:1.24.0
+      - apecloud/be-ubuntu:3.4.2
+      - apecloud/cn-ubuntu:3.4.2
+      - apecloud/fe-ubuntu:3.4.2
+      - apecloud/starrocks-tools:3.2.2
+    serviceVersions:
+      - 3.4.2
+zookeeper:
+  - version: 0.9.1
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/zoocreeper:1.0.1
+      - apecloud/zookeeper:3.9.4
+    serviceVersions:
+      - 3.9.4
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/zoocreeper:1.0.1
+      - apecloud/zookeeper:3.9.4
+    serviceVersions:
+      - 3.9.4
+damengdb:
+  - version: 0.9.2
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/dm:8.1
+      - apecloud/dmdb-tool:8.1
+      - apecloud/dm:8.1.4-6-20241231
+      - apecloud/dmdb-exporter:8.1.4
+      - apecloud/dmdb-tool:8.1.4
+    serviceVersions:
+      - 8.1.4-6-20241231
+  - version: 1.0.2
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/dmdb-exporter:0.1.2
+      - apecloud/dmdb-tool:8.1
+      - apecloud/dm:8.1.4-6-20241231
+      - apecloud/dmdb-tool:8.1.4
+      - apecloud/dm:8.1.4-48_pack4
+    serviceVersions:
+      - 8.1.4-48-pack4
+kingbase:
+  - version: 0.9.1
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/kingbase:v008r006c009b0014-unit
+      - apecloud/kmonitor:v2.4.0-unit
+    serviceVersions:
+      - 8.6.8
+  - version: 1.0.1
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/kingbase:v008r006c009b0014-unit
+      - apecloud/kmonitor:v2.4.0-unit
+    serviceVersions:
+      - 8.6.8
+tidb:
+  - version: 0.9.0
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/busybox:1.35
+      - apecloud/pd:v7.5.2
+      - apecloud/tidb:v7.5.2
+      - apecloud/tikv:v7.5.2
+      - apecloud/br:v8.4.0
+      - apecloud/pd:v8.4.0
+      - apecloud/tidb:v8.4.0
+      - apecloud/tikv:v8.4.0
+      - apecloud/alpine-mysql-client:15.1
+      - apecloud/br:v7.1.6
+      - apecloud/pd:v7.1.5
+    serviceVersions:
+      - 7.5.2
+      - 8.4.0
+  - version: 1.0.1-beta.0
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/busybox:1.35
+      - apecloud/br:v7.5.2
+      - apecloud/pd:v7.5.2
+      - apecloud/tidb:v7.5.2
+      - apecloud/tikv:v7.5.2
+      - apecloud/br:v8.4.0
+      - apecloud/pd:v8.4.0
+      - apecloud/tidb:v8.4.0
+      - apecloud/tikv:v8.4.0
+      - apecloud/pd:v7.1.5
+      - apecloud/alpine-mysql-client:15.1
+    serviceVersions:
+      - 7.5.2
+      - 8.4.0
+vastbase:
+  - version: 0.9.0
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/vastbase:0.0.20
+      - apecloud/opengauss-prometheus-exporter:1.1.2
+    serviceVersions:
+      - 2.2.15
+  - version: 1.0.0
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/vastbase:0.0.20
+      - apecloud/opengauss-prometheus-exporter:1.1.2
+    serviceVersions:
+      - 2.2.15
+minio:
+  - version: 0.9.1
+    isEnterprise: false
+    isAddon: false
+    type: engine
+    images:
+      - apecloud/kubeblocks-tools:0.8.2
+      - apecloud/minio:RELEASE.2024-06-29T01-20-47Z
+    serviceVersions:
+      - 2024.6.29
+  - version: 1.0.1-beta.0
+    isEnterprise: false
+    isAddon: false
+    type: engine
+    images:
+      - apecloud/kubeblocks-tools:1.0.0
+      - apecloud/minio:RELEASE.2024-06-29T01-20-47Z
+    serviceVersions:
+      - 2024.6.29
+victoria-metrics:
+  - version: 0.9.1
+    isEnterprise: false
+    isAddon: false
+    type: engine
+    images:
+      - apecloud/vminsert:v1.101.0-cluster
+      - apecloud/vmselect:v1.101.0-cluster
+      - apecloud/vmstorage:v1.101.0-cluster
+    serviceVersions:
+      - 1.0.0
+  - version: 1.0.1-beta.0
+    isEnterprise: false
+    isAddon: false
+    type: engine
+    images:
+      - apecloud/vminsert:v1.101.0-cluster
+      - apecloud/vmselect:v1.101.0-cluster
+      - apecloud/vmstorage:v1.101.0-cluster
+    serviceVersions:
+      - 1.0.0
+gaussdb:
+  - version: 0.9.2
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/gaussdb:2.23.01.200
+      - apecloud/gaussdb-exporter:1.1.2
+      - apecloud/gaussdb-tools:2.23.01.200
+    serviceVersions:
+      - 2.23.1
+  - version: 1.0.1
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/gaussdb:2.23.01.200-r1
+      - apecloud/gaussdb-exporter:1.1.2
+      - apecloud/gaussdb-tools:2.23.01.200
+    serviceVersions:
+      - 2.23.1
+loki:
+  - version: 0.9.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/loki:2.9.4
+      - apecloud/curl-jq:0.1.0
+      - apecloud/nginx-unprivileged:1.24-alpine
+    serviceVersions:
+      - 1.0.0
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/loki:2.9.4
+      - apecloud/curl-jq:0.1.0
+      - apecloud/nginx-unprivileged:1.24-alpine
+    serviceVersions:
+      - 1.0.0
+mssql:
+  - version: 0.9.2
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/mssql:2022-CU19
+      - apecloud/prometheus-mssql-exporter:1.3.2
+      - apecloud/syncer:0.6.0
+    serviceVersions:
+      - 2022.19.0
+  - version: 1.0.2
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/mssql:2022-CU19
+      - apecloud/prometheus-mssql-exporter:1.3.2
+      - apecloud/syncer:0.6.5
+    serviceVersions:
+      - 2022.19.0
+oceanbase-proxy:
+  - version: 0.9.2
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/ob-configserver:1.0.0-2
+      - apecloud/obproxy:4.2.1.0-alpha8
+      - apecloud/obtools:4.2.1
+    serviceVersions:
+      - 4.2.1
+  - version: 1.0.1
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/ob-configserver:1.0.0-2
+      - apecloud/obproxy:4.2.1.0-alpha8
+      - apecloud/obtools:4.2.1
+    serviceVersions:
+      - 4.2.1
+pulsar:
+  - version: 0.9.1
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/pulsar:3.0.2
+      - apecloud/pulsartools:2.11
+    serviceVersions:
+      - 3.0.2
+rocketmq:
+  - version: 0.9.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/rocketmq:4.9.6-r1
+      - apecloud/rocketmq-dashboard:2.0.1
+      - apecloud/rocketmq-exporter:0.0.3
+      - apecloud/jmx-exporter:0.18.0-debian-11-r20
+    serviceVersions:
+      - 4.9.6
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/rocketmq:4.9.6-r1
+      - apecloud/rocketmq-dashboard:2.0.1
+      - apecloud/rocketmq-exporter:0.0.3
+      - apecloud/jmx-exporter:0.18.0-debian-11-r20
+    serviceVersions:
+      - 4.9.6
+goldendb:
+  - version: 0.9.0
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/goldendb-cn:6.1.03.08
+      - apecloud/goldendb-dn:6.1.03.08
+      - apecloud/goldendb-gtm:6.1.03.08
+      - apecloud/goldendb-lds:6.1.03.08
+      - apecloud/goldendb-control:6.1.03.08
+      - apecloud/goldendb-zk:6.1.03.08
+    serviceVersions:
+      - 6.1.3
+  - version: 1.0.0
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/goldendb-cn:6.1.03.08
+      - apecloud/goldendb-dn:6.1.03.08
+      - apecloud/goldendb-gtm:6.1.03.08
+      - apecloud/goldendb-lds:6.1.03.08
+      - apecloud/goldendb-control:6.1.03.08
+      - apecloud/goldendb-zk:6.1.03.08
+    serviceVersions:
+      - 6.1.3
+tdsql:
+  - version: 0.9.3
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/tdsql-db:8.0.33-v24-txsql-22.6.0-20240417
+      - apecloud/tdsql-proxy:8.0.33-v24-txsql-22.6.0-20240417
+      - apecloud/tdsql-scheduler:8.0.33-v24-txsql-22.6.0-20240417
+      - apecloud/zookeeper:3.6.4
+      - apecloud/mysqld-exporter:0.15.1
+    serviceVersions:
+      - 8.0.33
+  - version: 1.0.0
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/tdsql-db:8.0.33-v24-txsql-22.6.0-20240417
+      - apecloud/tdsql-proxy:8.0.33-v24-txsql-22.6.0-20240417
+      - apecloud/tdsql-scheduler:8.0.33-v24-txsql-22.6.0-20240417
+      - apecloud/zookeeper:3.6.4
+      - apecloud/mysqld-exporter:0.15.1
+    serviceVersions:
+      - 8.0.33
+influxdb:
+  - version: 0.9.3
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/influxdb:2.7.11-debian-12-r18
+      - apecloud/os-shell:11-debian-11-r93
+    serviceVersions:
+      - 2.7.11
+  - version: 1.0.3-beta.0
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/influxdb:2.7.11-debian-12-r18
+      - apecloud/os-shell:11-debian-11-r93
+      - apecloud/influxdb:1.8.10-c1.1.2-data
+      - apecloud/influxdb:1.8.10-c1.1.2-meta
+      - apecloud/curl-jq:0.1.0
+    serviceVersions:
+      - 1.8.10
+      - 2.7.11
+oracle:
+  - version: 0.9.0
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/oracle:12.2.0.1-ee
+      - apecloud/oracle:23.6.0.0-free
+      - apecloud/observability-exporter:2.0.2
+    serviceVersions:
+      - 12.2.0
+      - 23.6.0
+  - version: 1.0.2
+    isEnterprise: true
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/oracle:12.2.0.1-ee
+      - apecloud/oracle:23.6.0.0-free
+      - apecloud/observability-exporter:2.0.2
+    serviceVersions:
+      - 12.2.0
+      - 23.6.0
+etcd:
+  - version: 0.9.0
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/etcd:v3.5.6
+      - apecloud/etcd:v3.5.15
+      - apecloud/etcd:v3.6.1
+      - apecloud/bash-busybox:1.37.0-musl
+    serviceVersions:
+      - 3.5.15
+      - 3.6.1
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/etcd:v3.5.15
+      - apecloud/etcd:v3.6.1
+      - apecloud/bash-busybox:1.37.0-musl
+    serviceVersions:
+      - 3.5.15
+      - 3.6.1
+milvus:
+  - version: 0.9.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/os-shell:11-debian-11-r90
+      - apecloud/milvus-operator:v0.9.17
+      - apecloud/milvus:v2.5.13
+      - apecloud/minio:RELEASE.2022-03-17T06-34-49Z
+    serviceVersions:
+      - 2.5.13
+  - version: 1.0.2-beta.0
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/os-shell:11-debian-11-r90
+      - apecloud/milvus-operator:v0.9.17
+      - apecloud/milvus:v2.5.13
+      - apecloud/minio:RELEASE.2022-03-17T06-34-49Z
+      - apecloud/milvus-backup:v0.5.9-yq
+    serviceVersions:
+      - 2.5.13
+nebula:
+  - version: 0.9.1
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/nebula-console:v3.8.0
+      - apecloud/nebula-graphd:v3.8.0
+      - apecloud/nebula-metad:v3.8.0
+      - apecloud/nebula-storaged:v3.8.0
+      - apecloud/nebula-tool:1.0.0
+      - apecloud/nebula-agent:3.7.1
+      - apecloud/nebula-br:3.6.0
+      - apecloud/nebula-stats-exporter:v3.8.0
+    serviceVersions:
+      - v3.8.0
+  - version: 1.0.1
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/nebula-console:v3.8.0
+      - apecloud/nebula-graphd:v3.8.0
+      - apecloud/nebula-metad:v3.8.0
+      - apecloud/nebula-storaged:v3.8.0
+      - apecloud/nebula-tool:1.0.0
+      - apecloud/nebula-agent:3.7.1
+      - apecloud/nebula-br:3.6.0
+      - apecloud/nebula-stats-exporter:v3.8.0
+      - apecloud/kubeblocks-tools:0.9.4
+    serviceVersions:
+      - v3.8.0
+tdengine:
+  - version: 0.9.1
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/tdengine:3.3.6.9
+    serviceVersions:
+      - 3.3.6-9
+  - version: 1.0.1
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/tdengine:3.3.6.9
+    serviceVersions:
+      - 3.3.6-9
+doris:
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/doris-be:2.1.6
+      - apecloud/doris-fe:2.1.6
+    serviceVersions:
+      - 2.1.6
+hadoop:
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/hadoop-common:3.3.6
+      - apecloud/jmx-exporter:1.4.0
+      - apecloud/kubectl:1.29
+    serviceVersions:
+      - 3.3.6
+hive:
+  - version: 1.0.2
+    isEnterprise: false
+    isAddon: true
+    type: engine
+    images:
+      - apecloud/hive:4.0.1
+      - apecloud/hive:3.1.3
+      - apecloud/jmx-exporter:1.4.0
+    serviceVersions:
+      - 3.1.3
+      - 4.0.1
+##########################
+# applications
+##########################
+ingress-nginx:
+  - version: 4.12.1
+    isEnterprise: false
+    isAddon: false
+    images:
+      - apecloud/controller:v1.12.1
+      - apecloud/kube-webhook-certgen:v1.5.2
+metallb:
+  - version: 0.14.4
+    isEnterprise: false
+    isAddon: true
+    images:
+      - apecloud/frr:9.0.2
+      - apecloud/speaker:v0.14.4
+      - apecloud/controller:v0.14.4
+      - apecloud/metallb-charts:v0.14.4
+metrics-server:
+  - version: 3.12.0
+    isEnterprise: false
+    isAddon: false
+    images:
+      - apecloud/metrics-server:v0.7.0
+cert-manager:
+  - version: v1.17.2
+    isEnterprise: false
+    isAddon: true
+    images:
+      - apecloud/cert-manager-cainjector:v1.17.2
+      - apecloud/cert-manager-controller:v1.17.2
+      - apecloud/cert-manager-webhook:v1.17.2
+      - apecloud/cert-manager-startupapicheck:v1.17.2
+      - apecloud/cert-manager-acmesolver:v1.17.2
+spiderpool:
+  - version: 0.9.3
+    isEnterprise: false
+    isAddon: true
+    images:
+      - apecloud/spiderpool-plugins:v0.9.2
+      - apecloud/spiderpool-agent:v0.9.3
+      - apecloud/spiderpool-agent:07195d2997e9839b586c0f95a32c23cf8dc96f1e
+      - apecloud/spiderpool-controller:v0.9.3
+      - apecloud/spiderpool-controller:07195d2997e9839b586c0f95a32c23cf8dc96f1e
+      - apecloud/multus-cni:v3.9.3
+kata:
+  - version: latest
+    isEnterprise: false
+    isAddon: true
+    images:
+      - apecloud/hpa-example:latest
+      - apecloud/kata-deploy:latest
+dbdrag:
+  - version: 0.1.0
+    isEnterprise: false
+    isAddon: true
+    images:
+      - apecloud/ragflow:dbdrag
+      - apecloud/elasticsearch:dbdrag
+      - apecloud/minio:dbdrag
+      - apecloud/mysql:dbdrag
+      - apecloud/valkey:dbdrag
+csi-driver-nfs:
+  - version: 4.5.0
+    isEnterprise: false
+    isAddon: true
+    images:
+      - apecloud/nfsplugin:v4.5.0
+      - apecloud/livenessprobe:v2.11.0
+      - apecloud/csi-node-driver-registrar:v2.9.0
+      - apecloud/csi-provisioner:v3.6.1
+      - apecloud/csi-snapshotter:v6.3.1
