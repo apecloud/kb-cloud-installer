@@ -1,0 +1,182 @@
+# registry of image source
+registry: apecloud-registry.cn-zhangjiakou.cr.aliyuncs.com
+
+addonSecureDelivery:
+  enable: false
+
+# kubeblocks-enterprise
+kubeblocks-cloud:
+  enable: true
+
+kb-cloud-installer:
+  enable: true
+
+postgres-operator:
+  enable: true
+
+casdoor-helm-charts:
+  enable: true
+
+kubeblocks:
+  enable: true
+
+gemini:
+  enable: true
+
+gemini-monitor:
+  enable: true
+
+ape-local-csi-driver:
+  enable: true
+
+kubebench:
+  enable: true
+
+# addons
+minio:
+  enable: true
+
+victoria-metrics:
+  enable: true
+
+clickhouse:
+  enable: true
+
+elasticsearch:
+  enable: true
+
+kafka:
+  enable: true
+
+mongodb:
+  enable: true
+
+mysql:
+  enable: true
+
+oceanbase:
+  enable: true
+
+postgresql:
+  enable: true
+
+qdrant:
+  enable: true
+
+rabbitmq:
+  enable: true
+
+redis:
+  enable: true
+
+starrocks:
+  enable: true
+
+zookeeper:
+  enable: true
+
+damengdb:
+  enable: true
+
+kingbase:
+  enable: true
+
+tidb:
+  enable: true
+
+vastbase:
+  enable: true
+
+gaussdb:
+  enable: true
+
+loki:
+  enable: true
+
+mssql:
+  enable: true
+
+oceanbase-proxy:
+  enable: false
+
+pulsar:
+  enable: true
+
+rocketmq:
+  enable: true
+
+goldendb:
+  enable: false
+
+tdsql:
+  enable: false
+
+influxdb:
+  enable: true
+
+oracle:
+  enable: true
+
+etcd:
+  enable: true
+
+milvus:
+  enable: true
+
+nebula:
+  enable: true
+
+tdengine:
+  enable: true
+
+doris:
+  enable: true
+
+foundationdb:
+  enable: true
+
+selectdb:
+  enable: true
+
+nacos:
+  enable: true
+
+victoria-logs:
+  enable: true
+
+camellia-redis-proxy:
+  enable: true
+
+greatdb:
+  enable: true
+
+hadoop:
+  enable: true
+
+hive:
+  enable: true
+
+# applications
+ingress-nginx:
+  enable: true
+
+metallb:
+  enable: true
+
+cert-manager:
+  enable: false
+
+metrics-server:
+  enable: true
+
+spiderpool:
+  enable: false
+
+kata:
+  enable: false
+
+dbdrag:
+  enable: false
+
+csi-driver-nfs:
+  enable: false
